@@ -18,6 +18,7 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate> // implementing a protocal is a promise to find inside...
@@ -116,14 +117,27 @@
     [cell.posterView setImageWithURL:posterURL];
     return cell;
 }
-/*
-#pragma mark - Navigation
+
+//#pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//     Get the new view controller using [segue destinationViewController].
+//     Pass the selected object to the new view controller.
+    UITableViewCell *tappedCell = sender;
+    // "hey table view, I have this cell of yours. Can you tell me the index path? pls n ty"
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    DetailsViewController *detailViewController = [segue destinationViewController];
+    detailViewController.movie = movie;
+    
+    // "hey we're about to leave, do you want to give us anything?"
+    // "sure, here's the movie I last selected"
+    // NSLog(@"Tapping on a movie!");
+    // sender: obj that triggered the event
+    
 }
-*/
+
 
 @end
