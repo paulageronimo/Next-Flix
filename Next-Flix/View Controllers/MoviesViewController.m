@@ -49,7 +49,6 @@
                 self.movies = dataDictionary[@"results"]; // instead of saving it locally, it will be an instace property ready for table view
                 for (NSDictionary *movie in self.movies) {
                     NSLog(@"%@", movie[@"title"]); // @ @ @ @ @ @
-                    
                 }
                 
                 [self.tableView reloadData]; // says "hey call the data source methods bc movies might have changed"
@@ -72,14 +71,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    //UITableViewCell *cell = [[UITableViewCell alloc] init];
     // in obj c, objs are contrs in a diff way. nameOfClass() -> but []
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    
     NSDictionary *movie = self.movies[indexPath.row];
 // previous formatting:
     //    NSLog(@"%@", [NSString stringWithFormat:@"row:%d, section %d", indexPath.row, indexPath.section]);
 //    cell.textLabel.text = [NSString stringWithFormat:@"row:%d, section %d", indexPath.row, indexPath.section];
     //NSLog: outputs within the log box...
-    cell.textLabel.text = movie[@"title"];
+    //cell.textLabel.text = movie[@"title"];
     
     return cell;
 }
