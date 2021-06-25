@@ -1,0 +1,6 @@
+framework module Pods_Next_Flix_Next_FlixUITests {
+  umbrella header "Pods-Next-Flix-Next-FlixUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

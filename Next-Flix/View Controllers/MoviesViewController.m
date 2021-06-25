@@ -15,6 +15,7 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate> // implementing a protocal is a promise to find inside...
 // DataSource: two required components (rows/section and data path)
@@ -84,7 +85,13 @@
 //    cell.textLabel.text = [NSString stringWithFormat:@"row:%d, section %d", indexPath.row, indexPath.section];
     //NSLog: outputs within the log box...
     //cell.textLabel.text = movie[@"title"];
+    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
+    NSString *posterURLString = movie[@"poster_path"];
+    // glue the above together :)
+    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     
+    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString]; // same as a string, but it checks to see if it is a valid URL
+    [cell.posterView setImageWithURL:posterURL];
     return cell;
 }
 /*

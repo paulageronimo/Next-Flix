@@ -1,0 +1,6 @@
+framework module Pods_Next_Flix {
+  umbrella header "Pods-Next-Flix-umbrella.h"
+
+  export *
+  module * { export * }
+}
