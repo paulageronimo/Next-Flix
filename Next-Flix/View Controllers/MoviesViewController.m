@@ -12,6 +12,9 @@
 // created & config a cell
 // // // // // // // // formula for table view uwu
 
+// aspect fit/fill is better than scale to fit.
+// if aspect fill, clip to bounds [x]
+
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
@@ -24,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies; // property, bc it is a thing... duh.... + type and name; getter and setter array
 // nonatomic, strong, defines the getter and setter
+@property (nonatomic, strong) UIRefreshControl *refreshControl; // established variable
+
 @end
 
 @implementation MoviesViewController // warning
@@ -35,12 +40,26 @@
     self.tableView.dataSource = self; // setting it to the view controller
     self.tableView.delegate = self; // expecting it
     
+    [self fetchMovies];
+    
+    // setting up refresh control
+    
+    self.refreshControl = [[UIRefreshControl alloc] init]; // not attached to anything yet
+    // [self.tableView addSubview:self.refreshControl]; // create nested structure, inserted at any place in the "z level"
+    // once triggered, where does it go? hmm
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged]; // under the hood, target action pair, calling a particular method
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self.tableView addSubview:self.refreshControl];
+    
+}
+-(void)fetchMovies {
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=1901d344fe219bef0495b3e27f38a318"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error != nil) {
                 NSLog(@"%@", [error localizedDescription]);
+                // could show error view
             }
             else {
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -59,9 +78,11 @@
                 // TODO: Store the movies in a property to use elsewhere
                 // TODO: Reload your table view data
             }
+        [self.refreshControl endRefreshing];
         }];
     [task resume]; // forgot to add this.. idk why but it fixed a bug.
 }
+// - is instace method
 
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -91,6 +112,7 @@
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString]; // same as a string, but it checks to see if it is a valid URL
+    cell.posterView.image = nil; // blanks cell before downloading new one
     [cell.posterView setImageWithURL:posterURL];
     return cell;
 }
