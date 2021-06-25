@@ -68,12 +68,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WYN-Ks-per">
+                                <rect key="frame" x="188" y="389" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Next-Flix" id="TvS-8t-gka"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="WYN-Ks-per" id="id5-8O-ktA"/>
                         <outlet property="tableView" destination="aJw-JL-UWW" id="n5E-5d-WAN"/>
                     </connections>
                 </viewController>

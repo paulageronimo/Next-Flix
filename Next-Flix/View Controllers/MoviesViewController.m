@@ -29,12 +29,15 @@
 @property (nonatomic, strong) NSArray *movies; // property, bc it is a thing... duh.... + type and name; getter and setter array
 // nonatomic, strong, defines the getter and setter
 @property (nonatomic, strong) UIRefreshControl *refreshControl; // established variable
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
 @implementation MoviesViewController // warning
 
 - (void)viewDidLoad {
+    // Start the activity indicator
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -54,6 +57,9 @@
     
 }
 -(void)fetchMovies {
+    [self.activityIndicator startAnimating];
+
+    
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=1901d344fe219bef0495b3e27f38a318"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -63,6 +69,7 @@
                 // could show error view
             }
             else {
+                
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 
                 NSLog(@"%@", dataDictionary);
@@ -80,6 +87,10 @@
                 // TODO: Reload your table view data
             }
         [self.refreshControl endRefreshing];
+        // Stop the activity indicator
+        // Hides automatically if "Hides When Stopped" is enabled
+        [self.activityIndicator stopAnimating];
+        
         }];
     [task resume]; // forgot to add this.. idk why but it fixed a bug.
 }
