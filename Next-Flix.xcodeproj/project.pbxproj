@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C07BBF0268596CF004553DC /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07BBEF268596CF004553DC /* MoviesViewController.m */; };
+		5C07BBF72685DFF3004553DC /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07BBF62685DFF3004553DC /* MovieCell.m */; };
 		5C5C1E0B2683E12F00791A8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5C1E0A2683E12F00791A8E /* AppDelegate.m */; };
 		5C5C1E0E2683E12F00791A8E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5C1E0D2683E12F00791A8E /* SceneDelegate.m */; };
 		5C5C1E142683E12F00791A8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C5C1E122683E12F00791A8E /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		5C07BBEE268596CF004553DC /* MoviesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
 		5C07BBEF268596CF004553DC /* MoviesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
+		5C07BBF52685DFF3004553DC /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
+		5C07BBF62685DFF3004553DC /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 		5C5C1E062683E12F00791A8E /* Next-Flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Next-Flix.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5C1E092683E12F00791A8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5C5C1E0A2683E12F00791A8E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -93,6 +96,8 @@
 		5C07BBF3268597E1004553DC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C07BBF52685DFF3004553DC /* MovieCell.h */,
+				5C07BBF62685DFF3004553DC /* MovieCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C5C1E0B2683E12F00791A8E /* AppDelegate.m in Sources */,
+				5C07BBF72685DFF3004553DC /* MovieCell.m in Sources */,
 				5C5C1E1C2683E13000791A8E /* main.m in Sources */,
 				5C5C1E0E2683E12F00791A8E /* SceneDelegate.m in Sources */,
 				5C07BBF0268596CF004553DC /* MoviesViewController.m in Sources */,
