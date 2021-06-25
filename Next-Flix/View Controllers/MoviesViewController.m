@@ -66,11 +66,12 @@
     [super didReceiveMemoryWarning];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count; // instead of 20
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.movies.count; // instead of 20, called on startup, then not called again??
+    // after recieving network request back, add the line [55] for the reload data
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     // in obj c, objs are contrs in a diff way. nameOfClass() -> but []
     NSDictionary *movie = self.movies[indexPath.row];
