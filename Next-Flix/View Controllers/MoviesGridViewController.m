@@ -23,6 +23,16 @@
     self.collectionView.delegate = self;
     
     [self fetchMovies];
+    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout; // casting (UI etc*)
+    
+//    layout.minimumInteritemSpacing = 5;
+//    layout.minimumLineSpacing = 5;
+//
+    CGFloat postersPerLine = 2;
+    CGFloat itemWidth = self.collectionView.frame.size.width/postersPerLine;
+    CGFloat itemHeight = 1.5*itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
 -(void)didReceiveMemoryWarning {
